@@ -15,10 +15,12 @@ mongoose.connect("mongodb://127.0.0.1:27017/blog", (err) => {
   }
 });
 
-app.use("/", require("./routes/users"));
+app.use("/user", require("./routes/users"));
 
 app.use("/article", require("./routes/articles"));
-
-app.listen(8800, function () {
+app.get("/", (req, res) => {
+  res.send("Hey");
+});
+app.listen(3000, function () {
   console.log("running on port 3k");
 });

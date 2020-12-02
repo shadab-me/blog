@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { model } = require("./article");
 let Schema = mongoose.Schema;
 
 let User = mongoose.model(
@@ -13,4 +12,4 @@ let User = mongoose.model(
   })
 );
 
-model.export = User;
+module.exports = User;
