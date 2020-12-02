@@ -19,9 +19,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/blog", (err) => {
 });
 // view
 app.set("view engine", "ejs");
-app.set("view", join.path(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 // routers
+app.use("/", require("./routes/index"));
 app.use("/user", require("./routes/users"));
 app.use("/article", require("./routes/articles"));
 
