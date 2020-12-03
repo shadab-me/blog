@@ -9,6 +9,8 @@ const { join } = require("path");
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.static(path.join(__dirname, "public")));
 
 // mongoose connection
 mongoose.connect("mongodb://127.0.0.1:27017/blog", (err) => {

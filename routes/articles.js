@@ -3,10 +3,14 @@ let router = express.Router();
 
 let Article = require("../model/article.js");
 
+router.get("/new", (req, res) => {
+  res.render("newArticle");
+});
+
 router.post("/", (req, res) => {
-  Article.create(req.body, (err, user) => {
+  Article.create(req.body, (err, article) => {
     if (err) console.log(err);
-    res.send(user);
+    res.send("Article Is Publish Successfully!!");
   });
 });
 
