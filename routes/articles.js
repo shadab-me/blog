@@ -14,9 +14,10 @@ router.post("/", (req, res) => {
   });
 });
 
-router.get("/articles", (req, res) => {
-  Article.find({}, (err, articles) => {
-    return err ? console.log(err) : res.send(articles);
+router.get("/articles", async (req, res) => {
+  await Article.find({}, (err, articles) => {
+    if (err) console.log(err);
+    res.render("articles", { articles });
   });
 });
 

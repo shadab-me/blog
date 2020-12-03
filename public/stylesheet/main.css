@@ -132,3 +132,10 @@ h1 {
   color: pink;
   background-color: red;
 }
+
+.container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)),
+    url("/images/bg.jpg");
+  height: 720px;
+  background-size: cover;
+}
