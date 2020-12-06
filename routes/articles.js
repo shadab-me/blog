@@ -23,8 +23,8 @@ router.get("/articles", async (req, res) => {
 
 router.get("/:id", (req, res) => {
   let id = req.params.id;
-  Article.findById({ _id: id }, (err, user) => {
-    return err ? console.log(err) : res.send(user);
+  Article.findById({ _id: id }, (err, article) => {
+    return err ? console.log(err) : res.render("article", { article });
   });
 });
 

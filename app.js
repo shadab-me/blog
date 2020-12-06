@@ -3,8 +3,6 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
-const { join } = require("path");
-
 // middleware
 const app = express();
 app.use(morgan("dev"));
