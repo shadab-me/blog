@@ -139,3 +139,7 @@ h1 {
   height: 720px;
   background-size: cover;
 }
+a {
+  color: blue;
+  text-decoration: none;
+}
