@@ -15,6 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
   expressSession({
     secret: "Why I have to enter this random text",
+    saveUninitialized: false,
   })
 );
 
@@ -38,7 +39,6 @@ app.set("views", path.join(__dirname, "views"));
 // routers
 app.use("/", require("./routes/index"));
 app.use("/articles", require("./routes/articles"));
-app.use("/admin", require("./routes/admin/articles"));
 // routers only for admin
 app.use("/login", require("./routes/login"));
 app.use("/signup", require("./routes/signup"));

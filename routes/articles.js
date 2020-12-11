@@ -3,6 +3,17 @@ const router = express.Router();
 const Comment = require("../model/comment");
 const Article = require("../model/article.js");
 
+router.get("/new", (req, res) => {
+  res.render("newArticle");
+});
+
+router.post("/", (req, res) => {
+  Article.create(req.body, (err, article) => {
+    if (err) console.log(err);
+    res.send("Article Is Publish Successfully!!");
+  });
+});
+
 router.get("/", async (req, res) => {
   await Article.find({}, (err, articles) => {
     if (err) console.log(err);

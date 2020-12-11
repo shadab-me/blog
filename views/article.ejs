@@ -1,10 +1,14 @@
-<head>
-    <link href="/stylesheet/comment.css" rel="stylesheet">
+
+<head> 
+<link href="/stylesheet/article.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
 </head>
-
-
-<%= article %>
-<form action = "/article/<%= article.id %>/comment" method="POST">
-  </form>
-   <div id="root"></div>
- <%= comments %> 
+<body>
+  <main>
+  <div class="title">
+<h1> <%= article.title %> </h1>
+ <p><%= article.content %> </p>
+</div>
+</main>
+</body>
