@@ -12,8 +12,6 @@ router.get("/", async (req, res) => {
 
 //localhost:3000/article/5fc6457fb6ad84ea2f2716fd/comment
 router.post("/:id/comment", (req, res) => {
-  console.log(req.body);
-
   const id = req.params.id;
   Comment.create(
     {

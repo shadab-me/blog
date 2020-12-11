@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
+const expressSession = require("express-session");
 
 // middleware
 
@@ -11,6 +12,11 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  expressSession({
+    secret: "Why I have to enter this random text",
+  })
+);
 
 // mongoose connection
 mongoose.connect(
