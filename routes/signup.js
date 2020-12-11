@@ -1,7 +1,10 @@
 const express = require("express");
-const User = require("../model/user");
-const mongoose = require("mongoose");
+const User = require("../model/admin");
 const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.render("signup");
+});
 
 router.post("/", (req, res) => {
   User.create(req.body, (err, user) => {
@@ -14,6 +17,7 @@ router.post("/", (req, res) => {
 });
 
 // reading all user data
+
 router.get("/users", (req, res) => {
   User.find({}, (err, users) => {
     if (err) console.log(err);

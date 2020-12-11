@@ -31,9 +31,11 @@ app.set("views", path.join(__dirname, "views"));
 
 // routers
 app.use("/", require("./routes/index"));
-app.use("/user", require("./routes/users"));
 app.use("/articles", require("./routes/articles"));
 app.use("/admin", require("./routes/admin/articles"));
+// routers only for admin
+app.use("/login", require("./routes/login"));
+app.use("/signup", require("./routes/signup"));
 
 app.listen(3000, function () {
   console.log("running on port 3k");
