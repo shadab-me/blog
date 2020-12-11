@@ -3,25 +3,14 @@ const router = express.Router();
 const Comment = require("../model/comment");
 const Article = require("../model/article.js");
 
-router.get("/new", (req, res) => {
-  res.render("newArticle");
-});
-
-router.post("/", (req, res) => {
-  Article.create(req.body, (err, article) => {
-    if (err) console.log(err);
-    res.send("Article Is Publish Successfully!!");
-  });
-});
-
-router.get("/articles", async (req, res) => {
+router.get("/", async (req, res) => {
   await Article.find({}, (err, articles) => {
     if (err) console.log(err);
     res.render("articles", { articles });
   });
 });
-//localhost:3000/article/5fc6457fb6ad84ea2f2716fd/comment
 
+//localhost:3000/article/5fc6457fb6ad84ea2f2716fd/comment
 router.post("/:id/comment", (req, res) => {
   console.log(req.body);
 
@@ -40,7 +29,7 @@ router.post("/:id/comment", (req, res) => {
 
 router.get("/:id", (req, res) => {
   let id = req.params.id;
-  Article.findById({ _id: id }, (err, article) => {
+  Article.findById(id, (err, article) => {
     if (err) {
       console.log(err);
     }
