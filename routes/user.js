@@ -1,12 +1,37 @@
 const express = require("express");
 const User = require("../model/admin");
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const session = require("express-session");
 
-router.get("/", (req, res) => {
-  res.render("signup");
+router.get("/login", (req, res) => {
+  res.render("login");
 });
 
-router.post("/", (req, res) => {
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email: email }, (err, user) => {
+    if (err) res.render("login");
+    else if (user.email) {
+      bcrypt.compare(password, user.password, (err, result) => {
+        if (err) console.log(err);
+        else if (result) {
+          req.session.userID = user.id;
+          res.redirect("/article");
+        } else {
+          res.redirect("login");
+        }
+      });
+    }
+  });
+});
+
+router.get("/signup", (req, res) => {
+  res.render("signup");
+});
+//http://localhost:3000/user/signup
+
+router.post("/signup", (req, res) => {
   User.create(req.body, (err, user) => {
     if (err) {
       console.log(err);
@@ -17,7 +42,6 @@ router.post("/", (req, res) => {
 });
 
 // reading all user data
-
 router.get("/users", (req, res) => {
   User.find({}, (err, users) => {
     if (err) console.log(err);
