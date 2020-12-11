@@ -6,17 +6,28 @@ let user = new Schema({
   email: {
     type: String,
     lowercase: true,
+    unique: true,
+    required: true,
   },
   password: {
     type: String,
+    required: true,
   },
 });
-
+/*
+user.pre("validate", function (next) {
+  User.findOne(this.email, (err, result) => {
+    if (result) {
+      res.send("Email Is Already Register");
+    }
+  });
+});
+*/
 user.pre("save", function (next) {
-  console.log(this.password);
   if (this.password) {
-    this.password = bcrypt.hash(this.password, 12, (err, success) => {
+    bcrypt.hash(this.password, 12, (err, hash) => {
       if (err) console.log(err);
+      this.password = hash;
       next();
     });
   }
