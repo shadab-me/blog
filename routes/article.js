@@ -7,6 +7,7 @@ router.get("/new", (req, res) => {
   res.render("newArticle");
 });
 
+// Create Article
 router.post("/", (req, res) => {
   Article.create(req.body, (err, article) => {
     if (err) console.log(err);
@@ -14,6 +15,7 @@ router.post("/", (req, res) => {
   });
 });
 
+// Get Article
 router.get("/", async (req, res) => {
   await Article.find({}, (err, articles) => {
     if (err) console.log(err);
@@ -36,6 +38,7 @@ router.post("/:id/comment", (req, res) => {
   );
 });
 
+// Get Article by Id
 router.get("/:id", (req, res) => {
   let id = req.params.id;
   Article.findById(id, (err, article) => {

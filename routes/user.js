@@ -4,10 +4,12 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 
+// render login
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// login auth
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email: email }, (err, user) => {
@@ -26,11 +28,13 @@ router.post("/login", (req, res) => {
   });
 });
 
+// rendering signup page
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
 //http://localhost:3000/user/signup
 
+// signup
 router.post("/signup", (req, res) => {
   User.create(req.body, (err, user) => {
     if (err) {
@@ -50,6 +54,7 @@ router.get("/users", (req, res) => {
     }
   });
 });
+
 // reading only one user
 router.get("/:id", (req, res, next) => {
   let id = req.params.id;
