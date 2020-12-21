@@ -33,7 +33,21 @@ router.post("/:id/comment", (req, res) => {
       articleId: id,
     },
     (err, comment) => {
-      res.redirect(`/article/${id}`);
+      if (err) console.log(err);
+      Article.findByIdAndUpdate(
+        id,
+        { $push: { comments: comment.id } },
+        { new: true },
+        (err, article) => {
+          console.log(comment);
+          console.log(article);
+          if (err) {
+            console.log(err);
+          } else {
+            res.redirect(`/articles/${id}`);
+          }
+        }
+      );
     }
   );
 });
@@ -41,16 +55,16 @@ router.post("/:id/comment", (req, res) => {
 // Get Article by Id
 router.get("/:id", (req, res) => {
   let id = req.params.id;
-  Article.findById(id, (err, article) => {
-    if (err) {
-      console.log(err);
-    }
-    Comment.find({ articleId: id }, (err, comments) => {
-      return err
-        ? console.log(err)
-        : res.render("article", { article, comments });
+  Article.findById(id)
+    .populate("comments")
+    .exec((err, article) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(article);
+        res.render("article", { article });
+      }
     });
-  });
 });
 
 module.exports = router;

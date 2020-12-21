@@ -12,8 +12,9 @@ let Article = mongoose.model(
       type: String,
     },
     author: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
     },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   })
 );
 

@@ -6,7 +6,6 @@ const path = require("path");
 const expressSession = require("express-session");
 
 // middleware
-
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
@@ -39,7 +38,7 @@ app.set("views", path.join(__dirname, "views"));
 // routers
 
 app.use("/", require("./routes/index"));
-app.use("/article", require("./routes/article"));
+app.use("/articles", require("./routes/article"));
 app.use("/user", require("./routes/user"));
 
 app.listen(3000, function () {

@@ -6,7 +6,14 @@ const session = require("express-session");
 
 // render login
 router.get("/login", (req, res) => {
-  res.render("login");
+  console.log(req.session);
+  console.log(req.session.userID);
+
+  if (req.session && req.session.userID) {
+    res.redirect("/articles");
+  } else {
+    res.render("login");
+  }
 });
 
 // login auth
@@ -19,7 +26,7 @@ router.post("/login", (req, res) => {
         if (err) console.log(err);
         else if (result) {
           req.session.userID = user.id;
-          res.redirect("/article");
+          res.redirect("/articles");
         } else {
           res.redirect("login");
         }
@@ -29,6 +36,7 @@ router.post("/login", (req, res) => {
 });
 
 // rendering signup page
+
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
