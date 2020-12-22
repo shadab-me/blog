@@ -1,15 +1,58 @@
-
-<head> 
-<link href="/stylesheet/article.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= article.title %> </title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
+  <link rel="stylesheet" href="/stylesheet/article.css">
 </head>
 <body>
+  <%- include("_header.ejs") %> 
   <main>
-  <div class="title">
-<h1> <%= article.title %> </h1>
- <p><%= article.content %> </p>
- <p><%= article.comments  %> </p>
-</div>
-</main>
-</body>
+    <div class="container center">
+      <div class="breadcrumb align-left">
+        <h4><a href="/">HOME</a> / BLOG</a></h4>
+      </div>
+      <h1><%= article.title %></h1>
+      <p class="article-desc"><%= article.content %> </p>
+      <div class="social align-left">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= "http://localhost:3000/" + article.id %>" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= "http://localhost:3000/" + article.id %>" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= "http://localhost:3000/" + article.id %>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="container">
+      <h3>COMMENTS -</h3>
+      <div class="comment-form">
+        <form action="/articles/<%= article.id %>/comment" method="post">
+          <label> Comment:
+            <textarea name="comment" cols="30" rows="5"></textarea>
+          </label>
+          <input type="submit" value="Submit">
+        </form>
+        <div class="comments">
+          <% article.comments.forEach(comment => { %>
+            <div class="comment" id="<%= comment.id %> ">
+              <h4>By <%= comment.name %></h4>
+              <h6><%= comment.comment %></h6>
+              <div class="flex reaction">
+                <div class="imoji">
+                  <i class="fad fa-thumbs-up"></i>
+                  <i class="fal fa-smile-wink"></i>
+                  <i class="fal fa-smile-beam"></i>
+                  <i class="fal fa-smile-beam"></i>
+                  <i class="far fa-grin-tongue-wink"></i>
+                  <i class="fas fa-grin-hearts"></i>
+                  <i class="far fa-grimace"></i>
+                </div>
+                <h5 class="reply"><i class="fas fa-reply"></i> reply</h5>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </main>
+ </body>
+</html>

@@ -1,23 +1,94 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-<title>Welcome to Blog</title>
-<link href  = "/stylesheet/main.css" rel="stylesheet" type="text/css">
-
- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/stylesheet/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>Personal Blog</title>
 </head>
 <body>
+   <section class="hero">
 <header>
-
-</header>
-<main>
- <div class="container mx-auto">
-
-     <h1>This is new blog</h1>
- </div>
-
+  <div class="container flex js-bt">
+   <div class="brand">
+   <h2>Logo</h2>
+     </div>
+     <nav>
+        <ul class="flex">
+            <li><a href="index.ejs">Home</a></li>
+            <li><a href="#feature">Features</a></li>
+            <li><a href="#Leatest">Overview</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+     </nav>
+     </div>
+</header>  
+   <main class="container flex js-bt">
+<div class="col-50 hero-img">
+<img src="/images/homePageImage.svg" width="48px">
+</div>
+<div class="col-50 m-5 hero-text">
+<h1 class="hero-heading"> <strong>Discover <br> new technology </h1>
+<p class="hero-title">Johannes is a theme carefully designed and developed to get the most out of the new WordPress editor. Unleash the power of blocks - an awesome new way of creating rich content in WordPress!</p>
+<a href="/articles" class="hero-btn">Find More</a>
+</div>
 </main>
-</body>
+</section>  
 
+<section class="advantage" id = "feature">
+    <h3>Feature articles</h3>
+    <div class="container flex">
+    <div class="col-30 flex js-bt">
+    </div>
+ <div class="col-30 flex js-bt">
+</div>
+     <div class="col-30 flex js-bt">
+    </div>
+     </div>
+</section>
+<section class="advantage" id = "feature">
+    <h3>Latest articles</h3>
+    <div class="container flex">
+    <div class="col-30 flex js-bt">
+    </div>
+ <div class="col-30 flex js-bt">
+</div>
+     <div class="col-30 flex js-bt">
+    </div>
+     </div>
+</section>
+
+<section class="container" id="team">
+  <div class="wrapper">
+  <h1>About author</h1>
+  <div class="team">
+    <div class="team_member">
+      <div class="team_img">
+      </div>
+      </div>
+    <div class="team_member">
+      <div class="team_img">
+        <img src="https://avatars2.githubusercontent.com/u/38420725?s=400&u=3af1f400c4ab952c0993e2de2dc05b29b3bc80ae&v=4" alt="Team_image">
+      </div>
+      <h3>Shadab Ali</h3>
+      <p class="role">author</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p></div>
+    <div class="team_member">
+      <div class="team_img">
+       </div>
+     </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <h3>Copyright © 2020, Developed by AltCampus </h3>
+</footer>
+    
+</body>
 </html>
+   

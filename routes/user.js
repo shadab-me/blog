@@ -6,9 +6,6 @@ const session = require("express-session");
 
 // render login
 router.get("/login", (req, res) => {
-  console.log(req.session);
-  console.log(req.session.userID);
-
   if (req.session && req.session.userID) {
     res.redirect("/articles");
   } else {
@@ -20,25 +17,37 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email: email }, (err, user) => {
-    if (err) res.render("login");
-    else if (user.email) {
+    if (err) console.log(err);
+    if (!user) return res.redirect("/login");
+    if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         if (err) console.log(err);
-        else if (result) {
+        if (result) {
           req.session.userID = user.id;
           res.redirect("/articles");
         } else {
-          res.redirect("login");
+          res.redirect("user/login");
         }
       });
     }
   });
 });
 
+// logout
+router.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) return console.log(err);
+    res.redirect("/");
+  });
+  res.clearCookie("SID");
+});
 // rendering signup page
-
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  if (req.session && req.session.userID) {
+    res.redirect("/articles");
+  } else {
+    res.render("signup");
+  }
 });
 //http://localhost:3000/user/signup
 
@@ -87,4 +96,5 @@ router.put("/:id", (req, res) => {
     res.send(user, "Updated Successfully..");
   });
 });
+
 module.exports = router;

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Comment = require("../model/comment");
 const Article = require("../model/article.js");
+const verifyUser = require("../middleware/auth");
 
 router.get("/new", (req, res) => {
   res.render("newArticle");
@@ -24,7 +25,7 @@ router.get("/", async (req, res) => {
 });
 
 //localhost:3000/article/5fc6457fb6ad84ea2f2716fd/comment
-router.post("/:id/comment", (req, res) => {
+router.post("/:id/comment", verifyUser, (req, res) => {
   const id = req.params.id;
   Comment.create(
     {

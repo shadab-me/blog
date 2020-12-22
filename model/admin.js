@@ -23,6 +23,7 @@ user.pre("validate", function (next) {
   });
 });
 */
+
 user.pre("save", function (next) {
   if (this.password) {
     bcrypt.hash(this.password, 12, (err, hash) => {
@@ -32,5 +33,6 @@ user.pre("save", function (next) {
     });
   }
 });
+
 let User = mongoose.model("User", user);
 module.exports = User;
