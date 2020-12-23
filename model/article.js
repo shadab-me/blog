@@ -15,6 +15,12 @@ let Article = mongoose.model(
     author: {
       type: mongoose.Schema.Types.ObjectId,
     },
+    img: {
+      type: String,
+    },
+    category: {
+      type: String,
+    },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   })
 );

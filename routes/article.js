@@ -3,15 +3,21 @@ const router = express.Router();
 const Comment = require("../model/comment");
 const Article = require("../model/article.js");
 const verifyUser = require("../middleware/auth");
-
+const multer = require("multer");
+const upload = multer({ dest: "upload/" });
 router.get("/new", (req, res) => {
   res.render("newArticle");
 });
 
 // Create Article
-router.post("/", (req, res) => {
-  Article.create(req.body, (err, article) => {
-    console.log(req.body);
+router.post("/", upload.single("featureImage"), (req, res) => {
+  let ar = {
+    title: req.body.title,
+    content: req.body.content,
+    img: req.body.featureImage,
+  };
+  console.log(req.body);
+  Article.create(ar, (err, article) => {
     if (err) console.log(err);
     res.send(article);
   });
