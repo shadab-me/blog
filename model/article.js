@@ -6,10 +6,11 @@ let Article = mongoose.model(
   new Schema({
     title: {
       type: String,
-      require: true,
+      required: true,
     },
     content: {
       type: String,
+      required: true,
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

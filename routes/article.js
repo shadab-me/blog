@@ -11,8 +11,9 @@ router.get("/new", (req, res) => {
 // Create Article
 router.post("/", (req, res) => {
   Article.create(req.body, (err, article) => {
+    console.log(req.body);
     if (err) console.log(err);
-    res.send("Article Is Publish Successfully!!");
+    res.send(article);
   });
 });
 

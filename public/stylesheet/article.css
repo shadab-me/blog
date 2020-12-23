@@ -286,38 +286,23 @@ figure {
 }
 
 .comment-form {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
-}
-
-.social {
-  color: cadetblue;
-}
-
-.social * {
-  display: inline-block;
-  margin: 1rem 0.25rem;
-  font-size: 1.8rem;
 }
 
 /* comments */
 
 .comment {
-  border: 1px solid gray;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid black;
   margin: 1rem 0;
 }
 
-.comment h4 {
-  background-color: rgb(197, 184, 184);
-  color: black;
-  font-weight: 600;
-  padding: 0.5rem;
-}
-
 .comment h6 {
-  padding: 1rem 2rem;
+  padding: 2rem;
   font-size: 1.2rem;
-  background-color: bisque;
+  background-color: white;
 }
 
 .reply {
