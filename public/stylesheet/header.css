@@ -1,5 +1,6 @@
-header {
-  padding: 20px;
-  -webkit-box-shadow: 0 0 65px rgba(0, 0, 0, 0.09);
-  box-shadow: 0 0 65px rgba(0, 0, 0, 0.09);
+.brand {
+  color: black !important;
+}
+ul li a {
+  color: black !important;
 }

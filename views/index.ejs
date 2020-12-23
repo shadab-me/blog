@@ -11,17 +11,18 @@
 <title>Personal Blog</title>
 </head>
 <body>
+y
    <section class="hero">
-<header>
-  <div class="container flex js-bt">
-   <div class="brand">
+
+  <header class="flex js-bt">
+    <div class="brand"> 
    <h2>Logo</h2>
      </div>
      <nav>
         <ul class="flex">
             <li><a href="index.ejs">Home</a></li>
             <li><a href="#feature">Features</a></li>
-            <li><a href="#Leatest">Overview</a></li>
+            <li><a href="/Articles">Blogs</a></li>
             <li><a href="#team">Team</a></li>
         </ul>
      </nav>
@@ -41,25 +42,30 @@
 
 <section class="advantage" id = "feature">
     <h3>Feature articles</h3>
-    <div class="container flex">
-    <div class="col-30 flex js-bt">
-    </div>
- <div class="col-30 flex js-bt">
-</div>
-     <div class="col-30 flex js-bt">
-    </div>
+    <div class="container flex js-bt">
+      <% articles.slice(0, 5).forEach(article => { %>
+          <div class="col-20 flex js-bt">
+            <img src="/images/blog.jpg" width="100%" height="220px">
+            <span class="tag">Category</span>
+            <%=article.title %> 
+      </div>
+   <% }); %>
      </div>
 </section>
-<section class="advantage" id = "feature">
+<section class="advantage" id = "feature flex">
     <h3>Latest articles</h3>
-    <div class="container flex">
-    <div class="col-30 flex js-bt">
-    </div>
- <div class="col-30 flex js-bt">
-</div>
-     <div class="col-30 flex js-bt">
-    </div>
+
+  <div class="container flex js-bt">
+      <% articles.forEach(article => { %>
+          <div class="col-20 flex js-bt">
+            <img src="/images/blog.jpg" width="100%">
+           <span class="tag">Category</span>
+
+            <%=article.title %> 
+      </div>
+   <% }); %>
      </div>
+  
 </section>
 
 <section class="container" id="team">

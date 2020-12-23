@@ -41,6 +41,6 @@ app.use("/", require("./routes/index"));
 app.use("/articles", require("./routes/article"));
 app.use("/user", require("./routes/user"));
 
-app.listen(3000, function () {
+app.listen(4000, function () {
   console.log("running on port 3k");
 });
