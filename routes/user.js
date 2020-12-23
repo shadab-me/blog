@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../model/admin");
+const User = require("../model/Admin");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
@@ -17,11 +17,11 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email: email }, (err, user) => {
-    if (err) console.log(err);
+    if (err) next(err);
     if (!user) return res.redirect("/login");
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
-        if (err) console.log(err);
+        if (err) next(err);
         if (result) {
           req.session.userID = user.id;
           res.redirect("/articles");
@@ -36,11 +36,12 @@ router.post("/login", (req, res) => {
 // logout
 router.get("/logout", (req, res) => {
   req.session.destroy((err) => {
-    if (err) return console.log(err);
+    if (err) return next.log(err);
     res.redirect("/");
   });
-  res.clearCookie("SID");
+  res.clearCookie("");
 });
+
 // rendering signup page
 router.get("/signup", (req, res) => {
   if (req.session && req.session.userID) {
@@ -49,8 +50,8 @@ router.get("/signup", (req, res) => {
     res.render("signup");
   }
 });
-//http://localhost:3000/user/signup
 
+//http://localhost:3000/user/signup
 // signup
 router.post("/signup", (req, res) => {
   User.create(req.body, (err, user) => {
@@ -86,6 +87,7 @@ router.get("/:id", (req, res, next) => {
 // delete user
 router.delete("/:id", (req, res) => {
   User.findByIdAndDelete({ _id: id }, (err, user) => {
+    if (err) next(err);
     res.send(user, "deleted successfully..");
   });
 });
@@ -93,7 +95,8 @@ router.delete("/:id", (req, res) => {
 // update user data
 router.put("/:id", (req, res) => {
   User.findByIdAndUpdate({ _id: id }, req.body, (err, user) => {
-    res.send(user, "Updated Successfully..");
+    if (err) next(err);
+    res.send(user, "updated Successfully..");
   });
 });
 

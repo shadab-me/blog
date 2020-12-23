@@ -14,6 +14,7 @@ let user = new Schema({
     required: true,
   },
 });
+
 /*
 user.pre("validate", function (next) {
   User.findOne(this.email, (err, result) => {

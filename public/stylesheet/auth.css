@@ -10,7 +10,7 @@ body {
   box-sizing: border-box;
 }
 
-.container {
+.container-auth {
   margin: 100px auto;
   max-width: 350px;
   /* background: white; */
@@ -81,4 +81,14 @@ a {
 
 .signup a {
   color: #3fb996;
+}
+
+header ul li a {
+  color: white !important;
+}
+header ul li a:hover {
+  color: black !important;
+}
+header .brand {
+  color: white !important;
 }

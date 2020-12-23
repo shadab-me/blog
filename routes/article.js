@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Comment = require("../model/comment");
-const Article = require("../model/article.js");
+const Comment = require("../model/Comment");
+const Article = require("../model/Article.js");
 const verifyUser = require("../middleware/auth");
 const multer = require("multer");
 const upload = multer({ dest: "upload/" });
@@ -16,9 +16,8 @@ router.post("/", upload.single("featureImage"), (req, res) => {
     content: req.body.content,
     img: req.body.featureImage,
   };
-  console.log(req.body);
   Article.create(ar, (err, article) => {
-    if (err) console.log(err);
+    if (err) next(err);
     res.send(article);
   });
 });
@@ -26,7 +25,7 @@ router.post("/", upload.single("featureImage"), (req, res) => {
 // Get Article
 router.get("/", async (req, res) => {
   await Article.find({}, (err, articles) => {
-    if (err) console.log(err);
+    if (err) next(err);
     res.render("articles", { articles });
   });
 });
@@ -47,10 +46,8 @@ router.post("/:id/comment", verifyUser, (req, res) => {
         { $push: { comments: comment.id } },
         { new: true },
         (err, article) => {
-          console.log(comment);
-          console.log(article);
           if (err) {
-            console.log(err);
+            next(err);
           } else {
             res.redirect(`/articles/${id}`);
           }
@@ -67,9 +64,8 @@ router.get("/:id", (req, res) => {
     .populate("comments")
     .exec((err, article) => {
       if (err) {
-        console.log(err);
+        next(err);
       } else {
-        console.log(article);
         res.render("article", { article });
       }
     });
