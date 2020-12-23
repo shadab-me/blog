@@ -15,6 +15,7 @@ app.use(
   expressSession({
     secret: "Why I have to enter this random text",
     saveUninitialized: false,
+    resave: true,
   })
 );
 

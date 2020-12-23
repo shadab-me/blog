@@ -39,7 +39,7 @@ router.get("/logout", (req, res) => {
     if (err) return next.log(err);
     res.redirect("/");
   });
-  res.clearCookie("");
+  res.clearCookie("SID");
 });
 
 // rendering signup page

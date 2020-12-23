@@ -10,11 +10,10 @@
 <body>
   <%- include("_header.ejs") %> 
   <main>
-    <div class="container center">
+    <div class="container">
       <div class="breadcrumb align-left">
-        <h4><a href="/">HOME</a> / BLOG</a></h4>
-      </div>
-      <h1><%= article.title %></h1>
+       </div>
+      <h2 class="heading"><%= article.title %></h2>
       <p class="article-desc"><%= `${article.content}` %> </p>
       <div class="social align-left">
         <a href="https://www.facebook.com/sharer/sharer.php?u=<%= "http://localhost:3000/" + article.id %>" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -23,7 +22,7 @@
       </div>
     </div>
     <div class="container">
-      <h3>Discussion</h3>
+      <h3 id="dis">Discussion</h3>
       <div class="comment-form">
         <form action="/articles/<%= article.id %>/comment" method="post">
             <textarea name="comment" cols="30" rows="5" placeholder="Add to the discussion"></textarea>

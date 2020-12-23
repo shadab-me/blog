@@ -5,18 +5,20 @@ const Article = require("../model/Article.js");
 const verifyUser = require("../middleware/auth");
 const multer = require("multer");
 const upload = multer({ dest: "upload/" });
+const User = require("../model/Admin");
+
 router.get("/new", (req, res) => {
   res.render("newArticle");
 });
 
 // Create Article
-router.post("/", upload.single("featureImage"), (req, res) => {
+router.post("/", verifyUser, upload.single("featureImage"), (req, res) => {
   let ar = {
     title: req.body.title,
     content: req.body.content,
     img: req.body.featureImage,
   };
-  Article.create(ar, (err, article) => {
+  Article.create(ar, (err, article, next) => {
     if (err) next(err);
     res.send(article);
   });
@@ -24,9 +26,12 @@ router.post("/", upload.single("featureImage"), (req, res) => {
 
 // Get Article
 router.get("/", async (req, res) => {
-  await Article.find({}, (err, articles) => {
-    if (err) next(err);
-    res.render("articles", { articles });
+  console.log(req.session.userID);
+  await Article.find({}, (err, articles, next) => {
+    User.findById(req.session.userID, (err, user) => {
+      if (err) next(err);
+      res.render("articles", { articles, user });
+    });
   });
 });
 
@@ -39,8 +44,8 @@ router.post("/:id/comment", verifyUser, (req, res) => {
       comment: req.body.comment,
       articleId: id,
     },
-    (err, comment) => {
-      if (err) console.log(err);
+    (err, comment, next) => {
+      if (err) next(err);
       Article.findByIdAndUpdate(
         id,
         { $push: { comments: comment.id } },
@@ -62,7 +67,7 @@ router.get("/:id", (req, res) => {
   let id = req.params.id;
   Article.findById(id)
     .populate("comments")
-    .exec((err, article) => {
+    .exec((err, article, next) => {
       if (err) {
         next(err);
       } else {

@@ -180,14 +180,11 @@ textarea {
 
 input[type="submit"] {
   cursor: pointer;
-}
-
-.col-25 {
-  width: 25%;
-}
-
-.col-75 {
-  width: 75%;
+  background-color: blue;
+  width: 120px;
+  padding: 12px;
+  color: white;
+  border-radius: 10px;
 }
 
 .wrapper {
@@ -241,35 +238,6 @@ a {
 
 /* login */
 
-.login {
-  background-color: cornsilk;
-}
-
-.login h3 {
-  margin-top: 5rem;
-}
-
-.login-form {
-  background-color: lightcoral;
-  flex-flow: column;
-  padding: 1.25rem;
-  border-radius: 5px;
-  margin-top: 2rem;
-}
-
-.login-form label {
-  color: rgb(34, 59, 59);
-}
-
-.login-form input[type="submit"] {
-  border-radius: 5px;
-  outline: none;
-  font-weight: 600;
-  background-color: lightgray;
-  color: mediumseagreen;
-  margin-top: 1.5rem;
-  padding: 0.25rem 1rem;
-}
 figure {
   text-align: center;
   margin: 2rem auto;
@@ -285,40 +253,21 @@ figure {
   margin: 2rem;
 }
 
-.comment-form {
-  width: 100%;
-  margin: 0 auto;
-}
-
 /* comments */
 
 .comment {
   background-color: white;
   border-radius: 10px;
-  border: 1px solid black;
-  margin: 1rem 0;
-}
-
-.comment h6 {
-  padding: 2rem;
-  font-size: 1.2rem;
-  background-color: white;
-}
-
-.reply {
-  padding: 0.5rem;
-  cursor: pointer;
+  border: 1px solid #f2f2f2;
+  margin-top: 42px;
+  padding: 40px;
+  margin-bottom: 40px;
 }
 
 .imoji * {
   display: inline-block;
   margin: 0.25rem;
   color: rgb(204, 204, 84);
-}
-
-.reaction {
-  justify-content: space-between;
-  align-items: center;
 }
 
 .updation {
@@ -344,4 +293,14 @@ figure {
 
 .error {
   margin: 2rem;
+}
+#dis {
+  margin-bottom: 20px;
+  margin-left: 10px;
+  font-weight: 700;
+}
+.heading {
+  margin-bottom: 25px;
+  font-weight: 700;
+  line-height: 1.5;
 }
