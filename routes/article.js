@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Comment = require("../model/Comment");
 const Article = require("../model/Article.js");
-const verifyUser = require("../middleware/auth");
+const auth = require("../middleware/auth");
 const multer = require("multer");
 const upload = multer({ dest: "upload/" });
 const User = require("../model/Admin");
@@ -12,7 +12,7 @@ router.get("/new", (req, res) => {
 });
 
 // Create Article
-router.post("/", verifyUser, upload.single("featureImage"), (req, res) => {
+router.post("/", auth.verifyUser, upload.single("featureImage"), (req, res) => {
   let ar = {
     title: req.body.title,
     content: req.body.content,
@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
 });
 
 //localhost:3000/article/5fc6457fb6ad84ea2f2716fd/comment
-router.post("/:id/comment", verifyUser, (req, res) => {
+router.post("/:id/comment", auth.verifyUser, (req, res) => {
   const id = req.params.id;
   Comment.create(
     {

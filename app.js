@@ -4,20 +4,24 @@ const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
 const expressSession = require("express-session");
+const auth = require("./middleware/auth");
 
 // middleware
 const app = express();
+//app.use(loginUser);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   expressSession({
+    name: "newSession",
     secret: "Why I have to enter this random text",
     saveUninitialized: false,
     resave: true,
   })
 );
+app.use(auth.currentLoggedUser);
 
 // mongoose connection
 mongoose.connect(
